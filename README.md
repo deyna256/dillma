@@ -29,10 +29,6 @@ Event-driven, plugin-based. Every component (orchestrator, model runner, evaluat
 
 See [docs/architecture.md](docs/architecture.md) for the full design.
 
-## Status
-
-Early development. The MVP targets the Hierarchical voting mode with OpenRouter as the model provider.
-
 ## License
 
 [MIT](LICENSE)
