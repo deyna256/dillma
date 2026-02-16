@@ -1,33 +1,37 @@
-# dillma
+# Dillma
 
-LLM consensus engine — get better answers by making multiple models debate, review, and vote.
+Send one prompt to multiple AI models. A chairman model synthesizes all responses into a single, concise answer.
 
-## The idea
+## How It Works
 
-No single LLM is the best at everything. dillma sends the same query to multiple models, then has them evaluate each other's responses and picks the winner through a configurable voting process. Think of it as a panel of experts instead of a single advisor.
+1. **Configure models** — pick up to 3 regular models and 1 chairman from your connected providers.
+2. **Send a prompt** — all regular models receive it in parallel.
+3. **Chairman synthesizes** — the chairman gets anonymized responses (Model #1, Model #2, ...) and produces the final answer.
+4. **Explore results** — see the chairman's answer, or expand individual model responses with a full name mapping.
 
-## How it works
+## Features
 
-1. **Generate** — multiple LLM models answer the same question in parallel
-2. **Evaluate** — models review and score each other's responses
-3. **Aggregate** — a final answer is selected (or synthesized) based on the scores
+- **Multi-model synthesis** — combine the strengths of different models in a single query.
+- **Bias-free chairman** — responses are anonymized before reaching the chairman to prevent model-name bias.
+- **Revote** — selectively re-run any model (including the chairman); the chairman re-synthesizes automatically.
+- **Presets** — save and reuse model configurations (models, parameters, chairman assignment).
+- **Preset catalog** — publish presets, discover community presets, rate with likes, share via direct link.
+- **Multi-turn chat** — the chairman maintains conversation history; regular models receive a brief summary for context.
+- **BYO keys** — bring your own API keys for any API-compatible provider (OpenAI, Anthropic, Google, etc.). Keys are stored encrypted.
+- **Unified API** — the same API powers the frontend and is available for direct external use.
+- **Self-hostable** — deploy the full stack on your own infrastructure with a local preset catalog.
 
-The entire pipeline is configurable. You choose the models, the voting mode, and the aggregation strategy.
+## Limits
 
-## Voting modes
-
-| Mode | Description |
+| Resource | Limit |
 |---|---|
-| **Hierarchical** | A designated "chairman" model evaluates all responses and picks the best one |
-| **Democratic** | Every model reviews every other model's response; votes are tallied |
-| **Tournament** | Pairwise elimination brackets until a single winner remains |
-| **Hybrid** | Query is categorized first, then routed to specialized model committees |
+| Models per request | 4 (3 regular + 1 chairman) |
+| Saved sessions | 5 |
 
-## Architecture
+## Deployment
 
-Event-driven, plugin-based. Every component (orchestrator, model runner, evaluator, aggregator) communicates through an event bus and is independently replaceable.
-
-See [docs/architecture.md](docs/architecture.md) for the full design.
+- **Public instance** — hosted and maintained by the project team.
+- **Self-host** — run frontend + backend on your own infrastructure. The preset catalog is local.
 
 ## License
 
